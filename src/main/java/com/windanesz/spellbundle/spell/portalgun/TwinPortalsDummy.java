@@ -1,6 +1,7 @@
 package com.windanesz.spellbundle.spell.portalgun;
 
 import com.windanesz.spellbundle.SpellBundle;
+import com.windanesz.spellbundle.integration.portalgun.PortalGunIntegration;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.SpellModifiers;
@@ -31,4 +32,9 @@ public class TwinPortalsDummy extends SpellRay {
 	protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
 		return false;
 	}
+
+	/**
+	 * Returns the disabled spell desc.
+	 */
+	protected String getDescriptionTranslationKey() { return PortalGunIntegration.getInstance().getMissingSpellDesc(); }
 }

@@ -127,6 +127,7 @@ spell.spellbundle:twin_portals.desc=Casts a portal in the air or in a solid surf
 item.spellbundle:charm_portals.name=Echo Staff
 item.spellbundle:charm_portals.desc=Shoots a magical projectile that creates a portal. Sneak-cast to cast the other half of the portal
 entity.spellbundle:wasp_minion.name=Wasp
+integration.spellbundle:portalgun=Portal Gun
 
 # Biomes O Plenty mod
 spell.spellbundle:biomesoplenty_missing=This spell is disabled because you don't have the Biomes O' Plenty mod installed!

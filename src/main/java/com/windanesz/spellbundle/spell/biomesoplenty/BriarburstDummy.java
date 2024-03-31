@@ -1,6 +1,7 @@
 package com.windanesz.spellbundle.spell.biomesoplenty;
 
 import com.windanesz.spellbundle.SpellBundle;
+import com.windanesz.spellbundle.integration.biomesoplenty.BiomesOPlentyIntegration;
 import electroblob.wizardry.item.SpellActions;
 import electroblob.wizardry.spell.SpellRay;
 import electroblob.wizardry.util.SpellModifiers;
@@ -39,4 +40,9 @@ public class BriarburstDummy extends SpellRay {
 	public boolean canBeCastBy(EntityLiving npc, boolean override) {
 		return false;
 	}
+
+	/**
+	 * Returns the disabled spell desc.
+	 */
+	protected String getDescriptionTranslationKey() {return BiomesOPlentyIntegration.getInstance().getMissingSpellDesc();}
 }
