@@ -47,7 +47,7 @@ public class BiomesOPlentyIntegration extends Integration {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.generalSettings.portalgun_integration && isLoaded;
+		return Settings.generalSettings.bop_integration && isLoaded;
 	}
 
 	/**

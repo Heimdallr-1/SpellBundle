@@ -129,7 +129,7 @@ item.spellbundle:charm_portals.desc=Shoots a magical projectile that creates a p
 entity.spellbundle:wasp_minion.name=Wasp
 
 # Biomes O Plenty mod
-spell.spellbundle:biomesoplenty_missing=This spell is disabled because you don't have the PortalGun mod installed!
+spell.spellbundle:biomesoplenty_missing=This spell is disabled because you don't have the Biomes O' Plenty mod installed!
 spell.spellbundle:wasp_swarm=Wasp Swarm
 spell.spellbundle:wasp_swarm.desc=Summons a swarm of wasps to fight for you. The wasps will disappear after 30 seconds or if they are killed.
 tile.spellbundle:conjured_bramble.name=Bramble

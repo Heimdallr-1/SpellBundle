@@ -62,6 +62,11 @@ public class Settings {
 		@Config.RequiresMcRestart
 		public boolean bop_hot_spring_tweak = true;
 
+		@Config.Name("BiomesOPlenty integration")
+		@Config.Comment("Enables or disables the Waystones integration")
+		@Config.RequiresMcRestart
+		public boolean bop_integration = true;
+
 		@Config.Name("Treasure2 integration")
 		@Config.Comment("Enables or disables the Treasure2 integration")
 		@Config.RequiresMcRestart
