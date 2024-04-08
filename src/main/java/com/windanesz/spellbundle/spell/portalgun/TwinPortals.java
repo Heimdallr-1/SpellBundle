@@ -50,15 +50,19 @@ public class TwinPortals extends SpellRay {
 			boolean isTypeA = !caster.isSneaking();
 			int color = BlockReceptacle.PARTICLE_COLOURS.get(Element.MAGIC)[0];
 			if (caster.getHeldItemMainhand().getItem() instanceof ItemWand) {
-				color = BlockReceptacle.PARTICLE_COLOURS.get(((ItemWand) caster.getHeldItemMainhand().getItem()).element)[0];
+				Element element = ((ItemWand) caster.getHeldItemMainhand().getItem()).element == null ? Element.MAGIC :
+						((ItemWand) caster.getHeldItemMainhand().getItem()).element;
+				color = BlockReceptacle.PARTICLE_COLOURS.get(element)[0];
 			} else if (caster.getHeldItemOffhand().getItem() instanceof ItemWand) {
-				color = BlockReceptacle.PARTICLE_COLOURS.get(((ItemWand) caster.getHeldItemOffhand().getItem()).element)[0];
+				Element element = ((ItemWand) caster.getHeldItemOffhand().getItem()).element == null ? Element.MAGIC :
+						((ItemWand) caster.getHeldItemOffhand().getItem()).element;
+				color = BlockReceptacle.PARTICLE_COLOURS.get(element)[0];
 			}
 			PortalInfo info = (new PortalInfo()).setInfo(caster.getUniqueID().toString(), caster.getName(), isTypeA).setColour(color);
 
 			EnumFacing lookEF = EnumFacing.getFacingFromVector((float) caster.getLookVec().x, 0.0F, (float) caster.getLookVec().z);
 			if (!world.isRemote && PortalGunHelper.spawnPortal(world, pos, side, lookEF, info, 3, 3, false)) {
-			//	EntityHelper.playSoundAtEntity(caster, isTypeA ? SoundIndex.pg_wpn_portal_gun_fire_blue : SoundIndex.pg_wpn_portal_gun_fire_red, caster.getSoundCategory(), 0.2F, 1.0F + (caster.getRNG().nextFloat() - caster.getRNG().nextFloat()) * 0.1F);
+				//	EntityHelper.playSoundAtEntity(caster, isTypeA ? SoundIndex.pg_wpn_portal_gun_fire_blue : SoundIndex.pg_wpn_portal_gun_fire_red, caster.getSoundCategory(), 0.2F, 1.0F + (caster.getRNG().nextFloat() - caster.getRNG().nextFloat()) * 0.1F);
 				if (world.getTileEntity(pos.offset(side)) instanceof TilePortalBase) {
 					if (world.getTileEntity(pos.offset(side)) != null) {world.getTileEntity(pos.offset(side)).validate();}
 					if (caster instanceof EntityPlayer) {
@@ -72,15 +76,17 @@ public class TwinPortals extends SpellRay {
 
 	@Override
 	protected boolean onMiss(World world, EntityLivingBase caster, Vec3d origin, Vec3d direction, int ticksInUse, SpellModifiers modifiers) {
-		if (!world.isRemote  && caster != null && caster.rotationPitch > -50 && caster.rotationPitch < 50) {
+		if (!world.isRemote && caster != null && caster.rotationPitch > -50 && caster.rotationPitch < 50) {
 
 			boolean X = caster.getHorizontalFacing() == EnumFacing.NORTH || caster.getHorizontalFacing() == EnumFacing.SOUTH;
 			BlockPos here = new BlockPos(origin.add(direction.scale(3)));
 			Element element = Element.MAGIC;
 			if (caster.getHeldItemMainhand().getItem() instanceof ItemWand) {
-				element = ((ItemWand) caster.getHeldItemMainhand().getItem()).element;
+				element = ((ItemWand) caster.getHeldItemMainhand().getItem()).element == null ? Element.MAGIC :
+						((ItemWand) caster.getHeldItemMainhand().getItem()).element;
 			} else if (caster.getHeldItemOffhand().getItem() instanceof ItemWand) {
-				element = ((ItemWand) caster.getHeldItemOffhand().getItem()).element;
+				element = ((ItemWand) caster.getHeldItemOffhand().getItem()).element == null ? Element.MAGIC :
+						((ItemWand) caster.getHeldItemOffhand().getItem()).element;
 			}
 
 			for (BlockPos pos : BlockUtils.getBlockSphere(new BlockPos(here.getX(), here.getY(), here.getZ()), 1.5).stream().filter(p -> X ? p.getZ() == here.getZ() : p.getX() == here.getX()).collect(Collectors.toList())) {
@@ -89,7 +95,7 @@ public class TwinPortals extends SpellRay {
 					if (world.getTileEntity(pos) instanceof TilePortalHolderBlock) {
 						((TilePortalHolderBlock) world.getTileEntity(pos)).setElement(element);
 						((TilePortalHolderBlock) world.getTileEntity(pos)).markDirty();
-						world.markAndNotifyBlock(pos, (Chunk)null, world.getBlockState(pos), world.getBlockState(pos), 3);
+						world.markAndNotifyBlock(pos, (Chunk) null, world.getBlockState(pos), world.getBlockState(pos), 3);
 
 					}
 				}
@@ -97,7 +103,6 @@ public class TwinPortals extends SpellRay {
 		}
 		return false;
 	}
-
 
 	public static ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand, ItemPortalWand item) {
 		ItemStack stack = player.getHeldItem(hand);
