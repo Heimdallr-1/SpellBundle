@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import static com.windanesz.spellbundle.command.CommandRecallAlly.COMMAND_RECALL_MESSAGE;
+import static com.windanesz.spellbundle.integration.waystones.command.CommandRecallAlly.COMMAND_RECALL_MESSAGE;
 
 /**
  * <b>[Client -> Server]</b>

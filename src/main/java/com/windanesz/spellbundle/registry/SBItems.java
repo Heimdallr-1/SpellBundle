@@ -1,5 +1,7 @@
 package com.windanesz.spellbundle.registry;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import com.windanesz.spellbundle.SpellBundle;
 import com.windanesz.spellbundle.integration.Integration;
 import com.windanesz.spellbundle.integration.portalgun.PortalGunIntegration;
@@ -8,6 +10,8 @@ import com.windanesz.spellbundle.integration.qualitytools.common.QualityToolsObj
 import com.windanesz.spellbundle.integration.quark.QuarkIntegration;
 import com.windanesz.spellbundle.integration.treasure2.Treasure2Integration;
 import com.windanesz.spellbundle.integration.treasure2.common.Treasure2Objects;
+import com.windanesz.spellbundle.integration.trinkets.TrinketsIntegration;
+import com.windanesz.spellbundle.integration.trinkets.common.TrinketsObjects;
 import com.windanesz.spellbundle.integration.waystones.WaystonesIntegration;
 import com.windanesz.spellbundle.integration.waystones.common.WaystonesObjects;
 import com.windanesz.spellbundle.item.ItemArtefactSB;
@@ -16,6 +20,8 @@ import com.windanesz.spellbundle.item.ItemPortalWand;
 import electroblob.wizardry.item.ItemArtefact;
 import electroblob.wizardry.registry.WizardryTabs;
 import net.minecraft.block.Block;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -27,6 +33,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
+import java.util.UUID;
 
 @ObjectHolder(SpellBundle.MODID)
 @Mod.EventBusSubscriber
@@ -52,6 +59,8 @@ public final class SBItems {
 	public static final Item reforging_scroll = placeholder();
 	public static final Item amulet_reforging = placeholder();
 	public static final Item charm_spectral_hammer = placeholder();
+
+	public static final Item rejuvenation_upgrade = placeholder();
 
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<Item> event) {
@@ -91,11 +100,24 @@ public final class SBItems {
 
 		// PortalGun mod items
 		registerItem(registry, "charm_portals", new ItemPortalWand(EnumRarity.EPIC, ItemArtefact.Type.CHARM, PortalGunIntegration.getInstance()), PortalGunIntegration.getInstance());
+
+
+		// Trinkets Optional items
+		if (TrinketsIntegration.getInstance().isEnabled()) {
+			TrinketsObjects.registerItems(event);
+		}
+	}
+
+	// Define a method to create and populate the Multimap
+	public static Multimap<IAttribute, AttributeModifier> createAttributeModifierMultimap(UUID id, String name, double amount, int operation, IAttribute attribute) {
+		Multimap<IAttribute, AttributeModifier> modifiers = ArrayListMultimap.create();
+		modifiers.put(attribute, new AttributeModifier(id, name, amount, operation));
+		return modifiers;
 	}
 
 	@Nonnull
 	@SuppressWarnings("ConstantConditions")
-	private static <T> T placeholder() { return null; }
+	private static <T> T placeholder() {return null;}
 
 	/**
 	 * Registers artefacts into the item registry, also handles loot injection to the Wizardry artefact loot tables if the integration is enabled.

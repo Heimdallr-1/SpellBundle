@@ -144,11 +144,11 @@ spell.spellbundle:convulsive_curse.desc=The targeted creature or player is force
 
 item.mana_crystal.tooltip1=§6+§b$mpmax:§6 Max Mana temporarily (lost after leveling up)
 tooltip.wizard_armor_mana=Increases mana regeneration rate
-#item.ebwizardry:storage_upgrade.desc=Increases the player's mana capacity while holding the wand
-#item.ebwizardry:condenser_upgrade.desc=Increases the player's mana regeneration rate while holding the wand
-#item.ebwizardry:siphon_upgrade.desc=Extracts mana for the player from mobs when killed
-item.spellbundle:rejuvenation_upgrade.desc=Reduces the cooldown of mana regeneration after casting a spell
-item.spellbundle:rejuvenation_upgrade.name=Wand Rejuvenation Upgrade
-
-item.spellbundle:ring_bonus_mana.name=Ring of the Novice
-item.spellbundle:ring_bonus_mana.desc=Increases your mana pool's size
+#item.spellbundle:storage_upgrade.desc=Increases the player's mana capacity while holding the wand
+#item.spellbundle:condenser_upgrade.desc=Increases the player's mana regeneration rate while holding the wand
+#item.spellbundle:siphon_upgrade.desc=Extracts mana for the player from mobs when killed
+item.ebwizardry:storage_upgrade.desc=Increases the player's mana capacity while holding the wand
+item.ebwizardry:condenser_upgrade.desc=Increases the player's mana regeneration rate while holding the wand
+item.ebwizardry:siphon_upgrade.desc=Extracts mana for the player from mobs when killed
+item.ebwizardry:mana_flask.desc=Craft with a piece of wizard armor to restore %s mana, or drink it to restore half as much innate mana
+item.ebwizardry:ring_condensing.desc=Increases the player's mana regeneration rate

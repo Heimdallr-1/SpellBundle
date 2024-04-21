@@ -1,4 +1,4 @@
-package com.windanesz.spellbundle.command;
+package com.windanesz.spellbundle.integration.waystones.command;
 
 import com.windanesz.spellbundle.registry.SBSpells;
 import com.windanesz.spellbundle.spell.waystones.Warp;
